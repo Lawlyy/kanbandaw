@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban DAW06</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="css/estils.css">
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+    <header class="bg-blue-600 text-white p-4 shadow-md">
+        <h1 class="text-3xl font-bold text-center">
+            Tablero Kanban
+        </h1>
+    </header>
+
+    <main class="p-6">
+
+        <!-- Formulario -->
+        <section class="bg-white p-4 rounded-lg shadow-md mb-6">
+
+            <h2 class="text-2xl font-semibold mb-4">
+                Nueva tarea
+            </h2>
+
+            <form id="formularioTarea" class="flex flex-col gap-4">
+
+                <div>
+                    <label for="titulo" class="block font-medium">
+                        Título
+                    </label>
+
+                    <input type="text" id="titulo" class="w-full border rounded p-2">
+                </div>
+
+                <div>
+                    <label for="descripcion" class="block font-medium">Descripción</label>
+
+                    <textarea id="descripcion" class="w-full border rounded p-2"></textarea>
+                </div>
+
+                <div>
+                    <label for="prioridad" class="block font-medium">Prioridad</label>
+
+                    <select id="prioridad" class="w-full border rounded p-2">
+                        <option value="baja">Baja</option>
+                        <option value="media">Media</option>
+                        <option value="alta">Alta</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="fechaLimite" class="block font-medium">Fecha límite</label>
+                    <input type="date" id="fechaLimite" class="w-full border rounded p-2">
+                </div>
+
+                <button type="submit" class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Añadir tarea</button>
+
+            </form>
+
+        </section>
+
+        <!-- Filtros -->
+        <aside class="bg-white p-4 rounded-lg shadow-md mb-6">
+
+            <h2 class="text-xl font-semibold mb-4">Filtros y búsqueda</h2>
+
+            <div class="flex flex-col md:flex-row gap-4">
+
+                <input type="text" placeholder="Buscar tareas..." class="border rounded p-2 flex-1">
+
+                <select class="border rounded p-2">
+                    <option>Todos los estados</option>
+                    <option>Por hacer</option>
+                    <option>En curso</option>
+                    <option>Hecho</option>
+                </select>
+
+                <select class="border rounded p-2">
+                    <option>Todas las prioridades</option>
+                    <option>Baja</option>
+                    <option>Media</option>
+                    <option>Alta</option>
+                </select>
+
+            </div>
+
+        </aside>
+
+        <!-- Estadísticas -->
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="font-bold">Total de tareas</h3>
+                <p>0</p>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="font-bold">Por hacer</h3>
+                <p>0</p>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="font-bold">En curso</h3>
+                <p>0</p>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="font-bold">Completadas</h3>
+                <p>0%</p>
+            </div>
+
+        </section>
+
+        <!-- Tablero Kanban -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <article class="bg-white rounded-lg shadow p-4">
+
+                <h2 class="text-xl font-bold mb-4 text-center">Por hacer</h2>
+
+                <div id="columnaPorHacer" class="flex flex-col gap-4"></div>
+
+            </article>
+
+            <article class="bg-white rounded-lg shadow p-4">
+
+                <h2 class="text-xl font-bold mb-4 text-center">En curso</h2>
+
+                <div id="columnaEnCurso" class="flex flex-col gap-4"></div>
+
+            </article>
+
+            <article class="bg-white rounded-lg shadow p-4">
+
+                <h2 class="text-xl font-bold mb-4 text-center">Hecho</h2>
+
+                <div id="columnaHecho" class="flex flex-col gap-4"></div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8">
+        DAW06 - Proyecto Kanban
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
