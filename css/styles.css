@@ -1,0 +1,83 @@
+/* Estilos generales */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Tarjetas de estadísticas */
+
+section div p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+/* Columnas Kanban */
+
+article {
+    min-height: 250px;
+}
+
+/* Tarjetas de tarea */
+
+.tarea {
+    background-color: #f9fafb;
+    border-left: 6px solid #9ca3af;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Prioridades */
+
+.prioridad-baja {
+    border-left-color: #22c55e;
+}
+
+.prioridad-media {
+    border-left-color: #f59e0b;
+}
+
+.prioridad-alta {
+    border-left-color: #ef4444;
+}
+
+/* Botones de las tarjetas */
+
+.contenedorBotones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.contenedorBotones button,
+.contenedorBotones select {
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.4rem;
+    border: 1px solid #d1d5db;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.botonEditar {
+    background-color: #2563eb;
+    color: white;
+}
+
+.botonEliminar {
+    background-color: #dc2626;
+    color: white;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+}
