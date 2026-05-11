@@ -80,7 +80,6 @@ function crearTarea(evento) {
 
 }
 
-// renderizar tablero
 function renderizarTablero() {
 
     const columnaPorHacer = document.getElementById("columnaPorHacer");
@@ -116,8 +115,6 @@ function renderizarTablero() {
     });
 
 }
-
-// crear tarjeta visual
 
 function crearTarjetaTarea(tarea) {
 
@@ -164,11 +161,14 @@ function crearTarjetaTarea(tarea) {
 
             </select>
 
+            <button class="botonEliminar" onclick="eliminarTarea(${tarea.id})">Eliminar</button>
+
         </div>`;
 
     return tarjeta;
 
 }
+
 
 function cambiarEstado(id, nuevoEstado) {
 
@@ -177,6 +177,21 @@ function cambiarEstado(id, nuevoEstado) {
     if (tarea) {
 
         tarea.estado = nuevoEstado;
+
+        guardarTareas();
+
+        renderizarTablero();
+
+    }
+}
+
+function eliminarTarea(id) {
+
+    const confirmar = confirm("¿Seguro que quieres eliminar esta tarea?");
+
+    if (confirmar) {
+
+        tareas = tareas.filter(tarea => tarea.id !== id);
 
         guardarTareas();
 
