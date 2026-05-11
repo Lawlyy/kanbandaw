@@ -129,35 +129,59 @@ function crearTarjetaTarea(tarea) {
 
     tarjeta.innerHTML = `
 
-    <div class="cabeceraTarea">
-        <h3 class="tituloTarea">
-            ${tarea.titulo}
-        </h3>
+        <div class="cabeceraTarea">
+            <h3 class="tituloTarea">${tarea.titulo}</h3>
 
-        <span class="etiquetaPrioridad etiqueta-${tarea.prioridad}">
-            ${tarea.prioridad}
-        </span>
-    </div>
+            <span class="etiquetaPrioridad etiqueta-${tarea.prioridad}">${tarea.prioridad}</span>
+        </div>
 
-    <p class="descripcionTarea">
-        ${tarea.descripcion}
-    </p>
+        <p class="descripcionTarea">${tarea.descripcion}</p>
 
-    <hr class="separadorTarea">
+        <hr class="separadorTarea">
 
-    <div class="detalleTarea">
-        <p>
-            <span class="iconoPrioridad">⚑</span>
-            <strong>Prioridad:</strong>
-            <span class="texto-${tarea.prioridad}">${tarea.prioridad}</span>
-        </p>
+        <div class="detalleTarea">
+            <p>
+                <span class="iconoPrioridad">⚑</span>
+                <strong>Prioridad:</strong>
+                <span class="texto-${tarea.prioridad}">${tarea.prioridad}</span>
+            </p>
 
-        <p>
-            <span class="iconoFecha">▣</span>
-            <strong>Fecha límite:</strong> ${tarea.fechaLimite || "Sin fecha"}
-        </p>
-    </div>`;
+            <p>
+                <span class="iconoFecha">▣</span>
+                <strong>Fecha límite:</strong> ${tarea.fechaLimite || "Sin fecha"}
+            </p>
+        </div>
+        
+        <div class="contenedorBotones">
+
+            <select onchange="cambiarEstado(${tarea.id}, this.value)">
+
+                <option value="porHacer" ${tarea.estado === "porHacer" ? "selected" : ""}>Por hacer</option>
+
+                <option value="enCurso" ${tarea.estado === "enCurso" ? "selected" : ""}>En curso</option>
+
+                <option value="hecho" ${tarea.estado === "hecho" ? "selected" : ""}>Hecho</option>
+
+            </select>
+
+        </div>`;
 
     return tarjeta;
+
+}
+
+function cambiarEstado(id, nuevoEstado) {
+
+    const tarea = tareas.find(t => t.id === id);
+
+    if (tarea) {
+
+        tarea.estado = nuevoEstado;
+
+        guardarTareas();
+
+        renderizarTablero();
+
+    }
 
 }
