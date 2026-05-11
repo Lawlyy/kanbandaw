@@ -2,11 +2,17 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #f3f4f6;
 }
 
 /* Tarjetas de estadísticas */
 
-section div p {
+.tarjetaEstadistica {
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.tarjetaEstadistica p {
     font-size: 1.5rem;
     font-weight: bold;
     margin-top: 0.5rem;
@@ -15,20 +21,83 @@ section div p {
 /* Columnas Kanban */
 
 article {
-    min-height: 250px;
+    min-height: 520px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+article h2 {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Contenedores de columnas */
+
+#columnaPorHacer,
+#columnaEnCurso,
+#columnaHecho {
+    padding-top: 1rem;
 }
 
 /* Tarjetas de tarea */
 
 .tarea {
-    background-color: #f9fafb;
+    background-color: #ffffff;
     border-left: 6px solid #9ca3af;
     padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+    margin-bottom: 1rem;
 }
 
-/* Prioridades */
+.cabeceraTarea {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.tituloTarea {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.6rem;
+}
+
+.descripcionTarea {
+    margin-top: 0.5rem;
+    line-height: 1.5;
+}
+
+.separadorTarea {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 1rem 0;
+}
+
+/* Detalles de tarea */
+
+.detalleTarea p {
+    margin-bottom: 0.5rem;
+}
+
+.iconoPrioridad,
+.iconoFecha {
+    margin-right: 0.5rem;
+}
+
+/* Etiqueta de prioridad */
+
+.etiquetaPrioridad {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* Colores de prioridad */
 
 .prioridad-baja {
     border-left-color: #22c55e;
@@ -40,6 +109,36 @@ article {
 
 .prioridad-alta {
     border-left-color: #ef4444;
+}
+
+.etiqueta-baja {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.etiqueta-media {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+
+.etiqueta-alta {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.texto-baja {
+    color: #15803d;
+    font-weight: bold;
+}
+
+.texto-media {
+    color: #f59e0b;
+    font-weight: bold;
+}
+
+.texto-alta {
+    color: #ef4444;
+    font-weight: bold;
 }
 
 /* Botones de las tarjetas */
@@ -79,5 +178,9 @@ article {
 
     header h1 {
         font-size: 1.6rem;
+    }
+
+    article {
+        min-height: auto;
     }
 }

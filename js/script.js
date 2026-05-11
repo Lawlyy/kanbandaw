@@ -1,26 +1,25 @@
 
 let tareas = [];
 
-// Cargar tareas al iniciar
-
+// cargar tareas al iniciar
 document.addEventListener("DOMContentLoaded", () => {
 
     cargarTareas();
 
     renderizarTablero();
 
+    document.getElementById("formularioTarea").addEventListener("submit", crearTarea);
+
 });
 
-// Guardar tareas en localStorage
-
+// guardar tareas en localStorage
 function guardarTareas() {
 
     localStorage.setItem("tareasKanban", JSON.stringify(tareas));
 
 }
 
-// Cargar tareas desde localStorage
-
+// cargar tareas desde localStorage
 function cargarTareas() {
 
     const tareasGuardadas = localStorage.getItem("tareasKanban");
@@ -47,22 +46,54 @@ function cargarTareas() {
     }
 
 }
+ // crear tarea 
+function crearTarea(evento) {
 
-// Renderizar tablero
+    evento.preventDefault();
 
+    const titulo = document.getElementById("titulo").value.trim();
+    const descripcion = document.getElementById("descripcion").value.trim();
+    const prioridad = document.getElementById("prioridad").value;
+    const fechaLimite = document.getElementById("fechaLimite").value;
+
+    if (titulo === "") {
+        alert("El título es obligatorio");
+        return;
+    }
+
+    const nuevaTarea = {
+        id: Date.now(),
+        titulo: titulo,
+        descripcion: descripcion,
+        prioridad: prioridad,
+        fechaLimite: fechaLimite,
+        estado: "porHacer"
+    };
+
+    tareas.push(nuevaTarea);
+
+    guardarTareas();
+
+    renderizarTablero();
+
+    document.getElementById("formularioTarea").reset();
+
+}
+
+// renderizar tablero
 function renderizarTablero() {
 
     const columnaPorHacer = document.getElementById("columnaPorHacer");
     const columnaEnCurso = document.getElementById("columnaEnCurso");
     const columnaHecho = document.getElementById("columnaHecho");
 
-    // Limpiar columnas
+    // limpiar columnas
 
     columnaPorHacer.innerHTML = "";
     columnaEnCurso.innerHTML = "";
     columnaHecho.innerHTML = "";
 
-    // Recorrer tareas
+    // recorrer tareas
 
     tareas.forEach(tarea => {
 
@@ -86,7 +117,7 @@ function renderizarTablero() {
 
 }
 
-// Crear tarjeta visual
+// crear tarjeta visual
 
 function crearTarjetaTarea(tarea) {
 
@@ -97,24 +128,35 @@ function crearTarjetaTarea(tarea) {
     tarjeta.classList.add(`prioridad-${tarea.prioridad}`);
 
     tarjeta.innerHTML = `
-    
-        <h3 class="text-lg font-bold">
+
+    <div class="cabeceraTarea">
+        <h3 class="tituloTarea">
             ${tarea.titulo}
         </h3>
 
+        <span class="etiquetaPrioridad etiqueta-${tarea.prioridad}">
+            ${tarea.prioridad}
+        </span>
+    </div>
+
+    <p class="descripcionTarea">
+        ${tarea.descripcion}
+    </p>
+
+    <hr class="separadorTarea">
+
+    <div class="detalleTarea">
         <p>
-            ${tarea.descripcion}
-        </p>
-
-        <p class="mt-2">
-            <strong>Prioridad:</strong> ${tarea.prioridad}
+            <span class="iconoPrioridad">⚑</span>
+            <strong>Prioridad:</strong>
+            <span class="texto-${tarea.prioridad}">${tarea.prioridad}</span>
         </p>
 
         <p>
-            <strong>Fecha límite:</strong> ${tarea.fechaLimite}
+            <span class="iconoFecha">▣</span>
+            <strong>Fecha límite:</strong> ${tarea.fechaLimite || "Sin fecha"}
         </p>
-
-    `;
+    </div>`;
 
     return tarjeta;
 
