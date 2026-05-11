@@ -133,6 +133,27 @@ function renderizarTablero() {
 
     });
 
+    actualizarEstadisticas();
+}
+
+function actualizarEstadisticas() {
+
+    const total = tareas.length;
+    const porHacer = tareas.filter(tarea => tarea.estado === "porHacer").length;
+    const enCurso = tareas.filter(tarea => tarea.estado === "enCurso").length;
+    const hechas = tareas.filter(tarea => tarea.estado === "hecho").length;
+
+    let porcentaje = 0;
+
+    if (total > 0) {
+        porcentaje = Math.round((hechas / total) * 100);
+    }
+
+    document.getElementById("totalTareas").textContent = total;
+    document.getElementById("totalPorHacer").textContent = porHacer;
+    document.getElementById("totalEnCurso").textContent = enCurso;
+    document.getElementById("porcentajeCompletadas").textContent = porcentaje + "%";
+
 }
 
 function crearTarjetaTarea(tarea) {
