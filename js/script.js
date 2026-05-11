@@ -1,5 +1,6 @@
 
 let tareas = [];
+let idTareaEditando = null;
 
 // cargar tareas al iniciar
 document.addEventListener("DOMContentLoaded", () => {
@@ -61,16 +62,34 @@ function crearTarea(evento) {
         return;
     }
 
-    const nuevaTarea = {
-        id: Date.now(),
-        titulo: titulo,
-        descripcion: descripcion,
-        prioridad: prioridad,
-        fechaLimite: fechaLimite,
-        estado: "porHacer"
-    };
+    if (idTareaEditando !== null) {
 
-    tareas.push(nuevaTarea);
+        const tarea = tareas.find(tarea => tarea.id === idTareaEditando);
+
+        tarea.titulo = titulo;
+        tarea.descripcion = descripcion;
+        tarea.prioridad = prioridad;
+        tarea.fechaLimite = fechaLimite;
+
+        idTareaEditando = null;
+
+        document.querySelector("#formularioTarea button").textContent =
+            "Añadir tarea";
+
+    } else {
+
+        const nuevaTarea = {
+            id: Date.now(),
+            titulo: titulo,
+            descripcion: descripcion,
+            prioridad: prioridad,
+            fechaLimite: fechaLimite,
+            estado: "porHacer"
+        };
+
+        tareas.push(nuevaTarea);
+
+    }
 
     guardarTareas();
 
@@ -161,6 +180,8 @@ function crearTarjetaTarea(tarea) {
 
             </select>
 
+            <button class="botonEditar" onclick="editarTarea(${tarea.id})">Editar</button>
+
             <button class="botonEliminar" onclick="eliminarTarea(${tarea.id})">Eliminar</button>
 
         </div>`;
@@ -198,5 +219,23 @@ function eliminarTarea(id) {
         renderizarTablero();
 
     }
+}
 
+function editarTarea(id) {
+
+    const tarea = tareas.find(tarea => tarea.id === id);
+
+    if (tarea) {
+
+        document.getElementById("titulo").value = tarea.titulo;
+        document.getElementById("descripcion").value = tarea.descripcion;
+        document.getElementById("prioridad").value = tarea.prioridad;
+        document.getElementById("fechaLimite").value = tarea.fechaLimite;
+
+        idTareaEditando = id;
+
+        document.querySelector("#formularioTarea button").textContent =
+            "Guardar cambios";
+
+    }
 }
