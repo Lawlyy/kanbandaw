@@ -71,6 +71,7 @@ kanban-daw06/
 ├── img/
 ├── README.md
 └── .gitignore
+```
 
 ## Tecnologías utilizadas
 
