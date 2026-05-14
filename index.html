@@ -63,20 +63,20 @@
 
             <div class="flex flex-col md:flex-row gap-4">
 
-                <input type="text" placeholder="Buscar tareas..." class="border rounded p-2 flex-1">
+                <input type="text" id="busqueda" placeholder="Buscar tareas..." class="border rounded p-2 flex-1">
 
-                <select class="border rounded p-2">
-                    <option>Todos los estados</option>
-                    <option>Por hacer</option>
-                    <option>En curso</option>
-                    <option>Hecho</option>
+                <select id="filtroEstado" class="border rounded p-2">
+                    <option value="todos">Todos los estados</option>
+                    <option value="porHacer">Por hacer</option>
+                    <option value="enCurso">En curso</option>
+                    <option value="hecho">Hecho</option>
                 </select>
 
-                <select class="border rounded p-2">
-                    <option>Todas las prioridades</option>
-                    <option>Baja</option>
-                    <option>Media</option>
-                    <option>Alta</option>
+                <select id="filtroPrioridad" class="border rounded p-2">
+                    <option value="todas">Todas las prioridades</option>
+                    <option value="baja">Baja</option>
+                    <option value="media">Media</option>
+                    <option value="alta">Alta</option>
                 </select>
 
             </div>

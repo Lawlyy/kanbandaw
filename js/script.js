@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarTablero();
 
     document.getElementById("formularioTarea").addEventListener("submit", crearTarea);
+    document.getElementById("busqueda").addEventListener("input", renderizarTablero);
+    document.getElementById("filtroEstado").addEventListener("change", renderizarTablero);
+    document.getElementById("filtroPrioridad").addEventListener("change", renderizarTablero)
 
 });
 
@@ -113,7 +116,9 @@ function renderizarTablero() {
 
     // recorrer tareas
 
-    tareas.forEach(tarea => {
+    const tareasFiltradas = obtenerTareasFiltradas();
+
+    tareasFiltradas.forEach(tarea => {
 
         const tarjeta = crearTarjetaTarea(tarea);
 
@@ -134,6 +139,22 @@ function renderizarTablero() {
     });
 
     actualizarEstadisticas();
+}
+
+function obtenerTareasFiltradas() {
+    
+    const textoBusqueda = document.getElementById("busqueda").value.toLowerCase();
+    const estadoFiltro = document.getElementById("filtroEstado").value;
+    const prioridadFiltro = document.getElementById("filtroPrioridad").value;
+
+    return tareas.filter(tarea => {
+
+        const coincideBusqueda = tarea.titulo.toLowerCase().includes(textoBusqueda) || tarea.descripcion.toLowerCase().includes(textoBusqueda);
+        const coincideEstado = estadoFiltro === "todos" || tarea.estado === estadoFiltro;
+        const coincidePrioridad = prioridadFiltro === "todas" || tarea.prioridad === prioridadFiltro;
+
+        return coincideBusqueda && coincideEstado && coincidePrioridad;
+    });
 }
 
 function actualizarEstadisticas() {
