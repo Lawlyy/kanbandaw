@@ -81,3 +81,21 @@ kanban-daw06/
 - JavaScript
 - Git y GitHub
 - localStorage
+
+## Capturas
+
+### Vista general
+
+![Vista general](img/vista-general.png)
+
+### Tarea creada
+
+![Tarea creada](img/tarea-creada.png)
+
+### Filtros
+
+![Filtros](img/responsive.png)
+
+### Vista responsive
+
+![Vista responsive](img/responsive-filtros.png)
